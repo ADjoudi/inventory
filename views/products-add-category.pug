@@ -1,0 +1,9 @@
+extends products
+
+block popup
+    div(class="popup-container"  name="products")
+        form(class="popup add-category-popup")
+            h1= title 
+            input(type="text" ,name='category', id="category", placeholder="Name of the category")
+            button Submit
+    script(src="/javascripts/popup.js")

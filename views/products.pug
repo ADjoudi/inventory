@@ -1,0 +1,42 @@
+extends layout  
+
+block content 
+    div(class="products-page")
+        section(class="categories-container")
+            div(class="categories-header ")
+                h1 Categories
+                a(href="/products/add-category") 
+                    img(src="/assets/add.svg", alt="+")
+            div(class="categories")
+                div(class="category")
+                    h3 All
+                    img(src="/assets/delete.svg", alt="")
+                each category in categories
+                    div(class="category")
+                        h3= category.name 
+                        img(src="/assets/delete.svg", alt="delete")
+        section(class="products-container")
+            div(class="products-header")
+                h1 Products    
+                h1(class="disclaimer") Delete all items in this Category to be able to delete it
+                a(class="add-product-btn" href="/products/add-product") 
+                    img(src="/assets/add.svg", alt="+")
+                    h1 Products 
+            table
+                tr 
+                    th Name
+                    th Brand
+                    th Selling Price
+                    th Rating
+                    th Nbr of Ratings
+                    th 
+                each product in products
+                    tr 
+                        td= product.name
+                        td= product.brand
+                        td= `$ ${product.price}` 
+                        td= product.rating 
+                        td= product.number_of_ratings
+                        td 
+                            img(src="/assets/delete_tuple.svg", alt="delete")
+    block popup

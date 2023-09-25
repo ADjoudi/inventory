@@ -4,4 +4,12 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    header
+      form
+        img(src="/assets/search.svg", alt="") 
+        input(type='text', name="search" placeholder="Search item or category")
+      a(id="home",href="/home") Home
+      a(href="/products")
+        img(src="/assets/settings.svg", alt="settings" class="nav-element") 
+      img(src="/assets/profile.svg", alt="profile") 
     block content

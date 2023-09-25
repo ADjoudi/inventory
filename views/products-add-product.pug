@@ -1,0 +1,24 @@
+extends products
+
+block popup
+    div(class="popup-container"  name="products")
+        form(class="popup add-product-popup")
+            h1= title 
+            label(for="product") Name
+            input(type="text" ,name='product', id="product", placeholder="Name of the Product")
+            label(for="categories") Category 
+            div(class="dropdown-container")
+                img(src="/assets/dropdown.svg", alt="")
+                select(id="categories" name="categories")
+                    option(value="computers") Computers
+                    option(value="laptops") Laptops
+                    option(value="chairs") Chairs
+            div(class="flex-row")
+                div(class="flex-item")
+                    label(for="brand") Brand
+                    input(type="text" ,name='brand', id="brand", placeholder="Company name or Brand")
+                div(class="flex-item")
+                    label(for="price") Selling Price
+                    input(type="number" step="0.01" ,name='price', id="price", placeholder="$")
+            button Submit
+    script(src="/javascripts/popup.js")

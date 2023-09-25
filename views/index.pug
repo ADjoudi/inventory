@@ -1,5 +1,26 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(class="landing")
+    div(class="categories")
+      span(class="category") All
+      each category in categories
+        span(class="category")= category.name
+      span(class="category") 
+        a(href="/home/add-category")
+          img(src="/assets/add.svg", alt="+")
+    div(class="items")
+      each product in products
+        div(class="item")
+          img(src=`${product.image}`, alt="" class="image")
+          h1= product.name
+          div(class="details")
+            h2= product.brand
+            span(class="dot")
+            img(src="/assets/star.svg", alt="*")
+            h2= product.rating
+            h2= `(${product.number_of_ratings})`
+          h1= `$ ${product.price}`
+      else 
+        h1 Unfortunately, everything is sold
+  block popup
