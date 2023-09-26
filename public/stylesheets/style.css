@@ -88,14 +88,15 @@ header #home {
   font-weight: 600;
   font-size: 1rem;
   padding: 1rem;
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.landing .categories .category a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.landing .categories .selected-category {
+  background-color: var(--color-light-blue);
+  border: 2px solid var(--color-blue);
+  color: var(--color-blue);
 }
 .landing .items {
   width: 100%;
@@ -187,6 +188,7 @@ header #home {
 .products-page .categories-container .categories .category {
   padding: 1rem;
   border-radius: 3rem;
+  text-decoration: none;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -195,19 +197,31 @@ header #home {
 .products-page .categories-container .categories .category h3 {
   font-size: 1rem;
   font-weight: 500;
+  color: var(--color-black);
 }
-.products-page .categories-container .categories .category img {
+.products-page .categories-container .categories .category button {
   visibility: hidden;
+  border-radius: 100%;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .products-page .categories-container .categories .category:hover {
   background-color: var(--color-light);
   cursor: pointer;
 }
-.products-page .categories-container .categories .category:hover img {
+.products-page .categories-container .categories .category:hover button {
   visibility: visible;
 }
-.products-page .categories-container .categories .category:hover img:hover {
+.products-page .categories-container .categories .category:hover button:hover {
   cursor: pointer;
+}
+.products-page .categories-container .categories .selected-category {
+  background-color: var(--color-light-blue);
+}
+.products-page .categories-container .categories .selected-category h3 {
+  color: var(--color-blue);
 }
 .products-page .products-container {
   width: 100%;
@@ -248,14 +262,21 @@ header #home {
   width: 100%;
   border-collapse: collapse;
 }
-.products-page .products-container table img {
+.products-page .products-container table .empty-product-list {
+  color: var(--color-red);
+}
+.products-page .products-container table button {
   width: 2rem;
   height: 2rem;
   padding: 0.5rem;
   border-radius: 3rem;
+  background-color: var(--color-white);
   border: 1px solid var(--color-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.products-page .products-container table img:hover {
+.products-page .products-container table button:hover {
   cursor: pointer;
   background-color: var(--color-light);
 }

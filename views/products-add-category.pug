@@ -2,7 +2,7 @@ extends products
 
 block popup
     div(class="popup-container"  name="products")
-        form(class="popup add-category-popup")
+        form(class="popup add-category-popup" method='POST' action='')
             h1= title 
             input(type="text" ,name='category', id="category", placeholder="Name of the category")
             button Submit

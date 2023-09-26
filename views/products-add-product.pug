@@ -2,17 +2,20 @@ extends products
 
 block popup
     div(class="popup-container"  name="products")
-        form(class="popup add-product-popup")
+        form(class="popup add-product-popup" method="POST" action='')
             h1= title 
             label(for="product") Name
             input(type="text" ,name='product', id="product", placeholder="Name of the Product")
-            label(for="categories") Category 
+            label(for="category") Category 
             div(class="dropdown-container")
                 img(src="/assets/dropdown.svg", alt="")
-                select(id="categories" name="categories")
-                    option(value="computers") Computers
-                    option(value="laptops") Laptops
-                    option(value="chairs") Chairs
+                select(id="category" name="category")
+                    each category in categories     
+                        if product
+                            option(value= category._id selected= category._id===product.category? category.name: false)= category.name
+                        else
+                        option(value=category._id)= category.name
+                        
             div(class="flex-row")
                 div(class="flex-item")
                     label(for="brand") Brand

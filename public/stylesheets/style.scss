@@ -86,7 +86,6 @@ header {
     display: flex;
     flex-direction: row;
     gap: 1rem;
-
     .category {
       background-color: var(--color-white);
       border-radius: 3rem;
@@ -95,16 +94,16 @@ header {
       font-weight: 600;
       font-size: 1rem;
       padding: 1rem;
+      text-decoration: none;
 
       display: flex;
       align-items: center;
       justify-content: center;
-
-      a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+    }
+    .selected-category {
+      background-color: var(--color-light-blue);
+      border: 2px solid var(--color-blue);
+      color: var(--color-blue);
     }
   }
 
@@ -209,6 +208,7 @@ header {
       .category {
         padding: 1rem;
         border-radius: 3rem;
+        text-decoration: none;
 
         display: flex;
         flex-direction: row;
@@ -218,19 +218,34 @@ header {
         h3 {
           font-size: 1rem;
           font-weight: 500;
+          color: var(--color-black);
         }
-        img {
+        button {
           visibility: hidden;
+          border-radius: 100%;
+          padding: 0.2rem;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         &:hover {
           background-color: var(--color-light);
+
           cursor: pointer;
-          img {
+
+          button {
             visibility: visible;
             &:hover {
               cursor: pointer;
             }
           }
+        }
+      }
+      .selected-category {
+        background-color: var(--color-light-blue);
+        h3 {
+          color: var(--color-blue);
         }
       }
     }
@@ -258,6 +273,7 @@ header {
       .disclaimer {
         color: var(--color-red);
       }
+
       .add-product-btn {
         border-radius: 3rem;
         padding: 1rem;
@@ -278,12 +294,20 @@ header {
       width: 100%;
       border-collapse: collapse;
 
-      img {
+      .empty-product-list {
+        color: var(--color-red);
+      }
+      button {
         width: 2rem;
         height: 2rem;
         padding: 0.5rem;
         border-radius: 3rem;
+        background-color: var(--color-white);
         border: 1px solid var(--color-border);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:hover {
           cursor: pointer;

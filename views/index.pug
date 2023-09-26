@@ -3,12 +3,17 @@ extends layout
 block content
   div(class="landing")
     div(class="categories")
-      span(class="category") All
+      if selected_category==='all'
+        a(href="/home/all" class="category selected-category"  id='all') All
+      else
+        a(href="/home/all" class="category"  id='all') All
       each category in categories
-        span(class="category")= category.name
-      span(class="category") 
-        a(href="/home/add-category")
-          img(src="/assets/add.svg", alt="+")
+        if selected_category == category._id
+          a(href=`/home/${category._id}` class="category selected-category" id=category._id)= category.name
+        else
+          a(href=`/home/${category._id}` class="category" id=category._id)= category.name
+      a(href="/home/add-category" class="category")
+        img(src="/assets/add.svg", alt="+")
     div(class="items")
       each product in products
         div(class="item")

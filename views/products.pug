@@ -8,35 +8,58 @@ block content
                 a(href="/products/add-category") 
                     img(src="/assets/add.svg", alt="+")
             div(class="categories")
-                div(class="category")
-                    h3 All
-                    img(src="/assets/delete.svg", alt="")
+                if selected_category==='all'
+                    a(href="/products/all" class="category selected-category")
+                        h3 All
+                        
+                else
+                    a(href="/products/all" class="category")
+                        h3 All
+                        
                 each category in categories
-                    div(class="category")
-                        h3= category.name 
-                        img(src="/assets/delete.svg", alt="delete")
+                    if selected_category == category._id
+                        a(href=`/products/${category._id}` class="category selected-category" id=category._id)
+                            h3= category.name 
+                            form(method="POST",action=`/products/category/${category._id}/delete`)
+                                button 
+                                    img(type="submit" src="/assets/delete.svg", alt="delete")
+                    else
+                        a(href=`/products/${category._id}` class="category" id=category._id)
+                            h3= category.name 
+                            form(method="POST",action=`/products/category/${category._id}/delete`)
+                                button 
+                                    img(type="submit" src="/assets/delete.svg", alt="delete")
         section(class="products-container")
             div(class="products-header")
-                h1 Products    
-                h1(class="disclaimer") Delete all items in this Category to be able to delete it
+                h1 Products
+                if show
+                    h1(class="disclaimer") Delete all items in this Category to be able to delete it
                 a(class="add-product-btn" href="/products/add-product") 
                     img(src="/assets/add.svg", alt="+")
                     h1 Products 
             table
                 tr 
                     th Name
+                    th Category
                     th Brand
                     th Selling Price
                     th Rating
                     th Nbr of Ratings
-                    th 
+                    th
                 each product in products
                     tr 
                         td= product.name
+                        td= product.category.name
                         td= product.brand
                         td= `$ ${product.price}` 
                         td= product.rating 
                         td= product.number_of_ratings
                         td 
-                            img(src="/assets/delete_tuple.svg", alt="delete")
+                            form(method="POST",action=`/products/product/${product._id}/delete`)
+                                button 
+                                    img(type="submit" src="/assets/delete_tuple.svg", alt="delete")
+                else 
+                    tr  
+                        td(class="empty-product-list") There are no items in this category
+                        td
     block popup

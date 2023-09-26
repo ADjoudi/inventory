@@ -1,62 +1,42 @@
 var express = require("express");
 var router = express.Router();
-const fakeproducts = [
-  {
-    image: "/images/1.jpg",
-    name: "Macbook Laptop Pro M3",
-    brand: "Apple",
-    rating: 4.9,
-    number_of_ratings: 900,
-    price: 1200,
-  },
-  {
-    image: "/images/1.jpg",
-    name: "Macbook Laptop Pro M3",
-    brand: "Apple",
-    rating: 4.9,
-    number_of_ratings: 900,
-    price: 1200,
-  },
-  {
-    image: "/images/1.jpg",
-    name: "Macbook Laptop Pro M3",
-    brand: "Apple",
-    rating: 4.9,
-    number_of_ratings: 900,
-    price: 1200,
-  },
-];
-const fakecategories = [
-  { name: "Computer" },
-  { name: "Laptops" },
-  { name: "Chairs" },
-];
-/* GET home page. */
+const homeController = require("../controllers/homeController");
+const productController = require("../controllers/productController");
+const categoryController = require("../controllers/categoryController");
+
+router.get("/:page/add-category", categoryController.add_category_get);
+router.post("/:page/add-category", categoryController.add_category_post);
+
+router.get("/:page/add-product", productController.add_product_get);
+router.post("/:page/add-product", productController.add_product_post);
+
 router.get("/", function (req, res, next) {
-  res.redirect("/home");
+  res.redirect("/home/all");
 });
-router.get("/home", function (req, res, next) {
-  res.render("index", { products: fakeproducts, categories: fakecategories });
+router.get("/home", (req, res, next) => res.redirect("/home/all"));
+router.get("/home/:page/", (req, res, next) => {
+  res.selected_category = req.params.page;
+  next();
 });
+router.get("/home/all", homeController.product_list_all);
+router.get("/home/:page", homeController.product_list_in_category);
+
 router.get("/products", function (req, res, next) {
-  res.render("products", {
-    products: fakeproducts,
-    categories: fakecategories,
-  });
+  res.redirect("/products/all");
 });
-router.get("/:page/add-category", function (req, res, next) {
-  res.render(`${req.params.page}-add-category`, {
-    title: "Add Category",
-    products: fakeproducts,
-    categories: fakecategories,
-  });
+router.get("/products/:page/", (req, res, next) => {
+  res.selected_category = req.params.page;
+  next();
 });
-router.get("/:page/add-product", function (req, res, next) {
-  res.render(`${req.params.page}-add-product`, {
-    title: "Add Product",
-    products: fakeproducts,
-    categories: fakecategories,
-  });
-});
+router.get("/products/all", productController.product_list_all);
+router.get("/products/:page/", productController.product_list_in_category);
+router.post(
+  "/products/category/:category_id/delete",
+  categoryController.delete_category_post
+);
+router.post(
+  "/products/product/:product_id/delete",
+  productController.delete_product_post
+);
 
 module.exports = router;
